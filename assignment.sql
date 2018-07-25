@@ -1,17 +1,17 @@
 select co.contest_id,hacker_id,name, sum(ss.total_submission) Total_Submission,sum(ss.total_accepted_submission) Total_Accepted_Submission 
 into #temp1
-from contest co 
-inner join college cl on co.contest_id=cl.contest_id 
-inner join challenge ch on cl.college_id=ch.college_id 
-inner join submission_status ss on ch.challenge_id=ss.challenge_id
+from contests co 
+inner join colleges cl on co.contest_id=cl.contest_id 
+inner join challenges ch on cl.college_id=ch.college_id 
+inner join submission_stats ss on ch.challenge_id=ss.challenge_id
 group by co.contest_id,hacker_id,name
 
 select co.contest_id,hacker_id,name, sum(vs.total_views) Total_views,sum(vs.total_unique_views) Total_unique_views
 into #temp2
- from contest co 
-inner join college cl on co.contest_id=cl.contest_id 
-inner join challenge ch on cl.college_id=ch.college_id 
-inner join view_status vs on ch.challenge_id=vs.challenge_id
+ from contests co 
+inner join colleges cl on co.contest_id=cl.contest_id 
+inner join challenges ch on cl.college_id=ch.college_id 
+inner join view_stats vs on ch.challenge_id=vs.challenge_id
 group by co.contest_id,hacker_id,name
 
 
